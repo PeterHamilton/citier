@@ -42,6 +42,12 @@ module Citier
 
         citier_debug("table_name -> #{self.table_name}")
 
+        # Delegate reflect_on_association to root class if a reflection not found on model class.
+        # Needed for polymorphic associations (eg friendly id :slugs)
+        define_singleton_method :reflect_on_association do |name|
+          super(name).presence || self.superclass.reflect_on_association(name)
+        end
+
         # Add the functions required for root classes only
         send :include, Citier::RootInstanceMethods
       end

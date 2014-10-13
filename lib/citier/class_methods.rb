@@ -25,16 +25,25 @@ module Citier
 
         # The the Writable. References the write-able table for the class because
         # save operations etc can't take place on the views
-        self.const_set("Writable", create_class_writable(self))
+        self.const_set("Writable", create_class_writable(self)) unless self.const_defined?(:Writable)
         
         after_initialize do
-          self.id = nil if self.new_record? && self.id == 0
+          if self.new_record?     
+            parent = self.class.superclass.new
+            attributes_for_parent = parent.instance_variable_get(:@attributes)
+            self.or_attributes(attributes_for_parent)
+          
+            current = self.class::Writable.new
+            attributes_for_current = current.instance_variable_get(:@attributes)
+            self.or_attributes(attributes_for_current)
+            self.id = nil if self.id == 0
+          end
         end
 
         # Add the functions required for children only
         send :include, Citier::ChildInstanceMethods
       else
-      # Root class
+        # Root class
 
         citier_debug("Root Class")
 

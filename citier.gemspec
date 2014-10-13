@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{citier}
-  s.version = "0.1.15"
+  s.version = "0.1.16"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Hamilton, Originally from Laurent Buffat, Pierre-Emmanuel Jouve"]
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
     "lib/citier/instance_methods.rb",
     "lib/citier/child_instance_methods.rb",
     "lib/citier/root_instance_methods.rb",
-    "lib/citier/sql_adapters.rb",
     "lib/citier/relation_methods.rb"]
   s.files = ["Rakefile",
     "lib/citier.rb",
@@ -28,9 +27,7 @@ Gem::Specification.new do |s|
     "lib/citier/instance_methods.rb",
     "lib/citier/child_instance_methods.rb",
     "lib/citier/root_instance_methods.rb",
-    "lib/citier/sql_adapters.rb",
     "lib/citier/relation_methods.rb",
-    "Manifest",
     "citier.gemspec"]
   s.homepage = %q{https://github.com/peterhamilton/citier/}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "citier", "--main", "README"]
@@ -38,8 +35,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{citier}
   s.rubygems_version = %q{1.3.7}
   s.summary = s.description
-  
-  s.add_dependency('rails_sql_views') #needs the 'rails_sql_views', :git => 'git://github.com/morgz/rails_sql_views.git'  fork. Set this in your apps bundle
+
+  s.add_dependency('rails_sql_views') #needs the 'rails_sql_views', :git => 'https://github.com/ryanlitalien/rails_sql_views.git'  fork. Set this in your apps bundle
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
